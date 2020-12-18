@@ -13,10 +13,14 @@ html {
 
 .topbar, .content{
 	background-color: #2f3330;
-	border-radius: 45px;
 	text-indent: 35px;
 }
+.content{
+	position: relative;
+	border: 20px;
+}
 .topbar{
+	border-radius: 45px;
 	position: sticky;
 	top: 0;
 }

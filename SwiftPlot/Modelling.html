@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> SwiftPlot - Docs </title>
+        <meta charset="utf-8">
+        <meta name="description" content="SwiftPlot Documentation">
+        <meta name="author" content="Matter4478">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="design.css">
+    </head>
+    <body>
+        <div class="topbar">
+            <a href="Introduction.html">Introduction</a>
+        </div> 
+        <h1>SwiftPlot - Documentation</h1>
+        <h2>Modelling</h2>
+        <p>
+            A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
+            In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
+            The formulas in play:
+        </p>
+        <p>
+            > F = C * u
+        </p>
+        <p>
+            > a = F / m
+        </p>
+        <p>
+            > vnew = vold + a * dt
+        </p>
+        <p>
+            > unew = uold + v * dt
+        </p>
+        <p>
+            > tnew = told + dt
+        </p>
+        <p>
+            In SwiftPlot the = token means "will be" instead of equals.
+            Therefore vnew and vold should be replaced with v. 
+            The same is true for all other formulas with old and new in them.
+            To add Model Lines in SwiftPlot, press the arrow right of Model Lines to drop down the Model Lines.
+            In the textfield type the formula and press "Add Line".
+            When done continue to Variables.
+        </p>
+        <p>Table of Content:</p>
+        <div class="content">
+            <a href="Modelling.html">Modelling</a>
+        </div>
+        <div class="content">
+            <a href="Variables.html">Variables</a>
+        </div>
+        <div class="content">
+            <a href="Plotting.html">Plotting</a>
+        </div>
+    </body>
