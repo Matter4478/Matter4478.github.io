@@ -31,7 +31,7 @@ html {
 	background-color: #2f3330;
 }
 .topbar{
-	text-indent: 35px;
+	/* text-indent: 35px; */
 	background-color: #0e50b3;
 	border-radius: 5px;
 	padding: 10px;
