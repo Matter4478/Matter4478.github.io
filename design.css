@@ -17,6 +17,7 @@ html {
 	text-indent: 35px;
 }
 .topbar{
+	padding: 10px;
 	position: sticky;
 	top: 0;
 }

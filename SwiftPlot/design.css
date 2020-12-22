@@ -10,17 +10,31 @@ html {
         background-attachment: fixed;
 	}
 
-
-.topbar, .content{
+.container{
 	background-color: #2f3330;
-	text-indent: 35px;
+}
+.table{
+	background-color: #0e50b3;
+	float: right;
+	position: sticky;
+	padding: 15px;
+	border-radius: 5px;
+}
+.topbar, .content{
+	border-spacing: 10px;
 }
 .content{
 	position: relative;
+	text-align: center;
 	border: 20px;
+	border-radius: 2px;
+	background-color: #2f3330;
 }
 .topbar{
-	border-radius: 45px;
+	text-indent: 35px;
+	background-color: #0e50b3;
+	border-radius: 5px;
+	padding: 10px;
 	position: sticky;
 	top: 0;
 }
@@ -45,10 +59,11 @@ html {
 a{
 	color: white;
 	text-decoration: none;
+	padding-right: 15px;
 }
 
 a:hover {
-	background-color: white;
+	/* background-color: white; */
 	color: black;
 	text-decoration: none;
 }
@@ -65,7 +80,9 @@ h1{
 	font-family: Helvetica;
 
 }
-
+h2{
+	font-family: Helvetica;
+}
 
 
 
