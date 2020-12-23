@@ -89,3 +89,8 @@ h2{
 p{
 	font-family: Helvetica;
 }
+
+img{
+	width: 75%;
+	height: auto;
+}
