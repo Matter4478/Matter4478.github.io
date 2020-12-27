@@ -22,10 +22,13 @@
             <tr><td><a href="StartValues.html">Variables</a></td></tr>
         </table>
         <p>
-            The syntax of SwiftPlot is based on mathematical expressions. There's one big difference tough; "=" means "will be", instead of "equals".<br>
+            The syntax of SwiftPlot is based on mathematical expressions. There's one big difference; "=" means "will be", instead of "equals".
+            between all variables there must be an operator.<br>
             The first variable in a Model Line will be assigned the result of said Line.<br>
             v = v + a * dt<br>
-            the variable v will be assigned the value of v + a * dt.<br>
+            v + a * dt.<br>
+            the variable v will be assigned the value of v + a * dt.
+            The = sign is ignored. This allows for shortening the line above:<br>
             Note: SwiftPlot takes math order into consideration, hence it's important to take these into account. 
         </p>
         <h2>Operations</h2>
@@ -37,6 +40,20 @@
             - Divide: /<br>
             - Add: +<br>
             - Substract: -<br>
+        </p>
+        <h2>if-then-else statements</h2>
+        <p>The syntax for if-else-then statements is as follows:<br>
+            if comparison then expression else expression<br>
+            Example: if v >= 0 then Fres = Fengine - Ffriction else Fres = Fengine<br>
+        </p>
+        <h2>Compare Operators</h2>
+        <p>These compare operators are supported:<br>
+            - equals: ==<br>
+            - larger: ><br>
+            - smaller: &lt;<br>
+            - larger and or equals: >=<br>
+            - smaller and or equals: &lt;=<br>
+            Note: Due to mathematical limitations, equals currently behaves a little weird. For higher precision SwiftPlot calculates with Doubles, but that means that 5.00000, behind the scenes means 4.9999999999999.
         </p>
     </body>
 </html>
