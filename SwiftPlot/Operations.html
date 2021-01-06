@@ -7,6 +7,8 @@
         <meta name="author" content="Matter4478">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="design.css">
+        <link rel="icon" href="Images/Icon.png">
+        <link rel="shortcut icon" href="Images/Icon.png">
     </head>
     <body>
         <div class="topbar">
@@ -20,18 +22,19 @@
             <th>Documentation</th>
             <tr><td><a href="Operations.html">Syntax and Operations</a></td></tr>
             <tr><td><a href="StartValues.html">Variables</a></td></tr>
+            <tr><td><a href="Limitations.html">Limitations</a></td></tr>
         </table>
         <p>
             The syntax of SwiftPlot is based on mathematical expressions. There's one big difference; "=" means "will be", instead of "equals".
-            between all variables there must be an operator.<br>
+            Between all variables there must be an operator of some sort.<br>
             The first variable in a Model Line will be assigned the result of said Line.<br>
             v = v + a * dt<br>
             v + a * dt.<br>
             the variable v will be assigned the value of v + a * dt.
-            The = sign is ignored. This allows for shortening the line above:<br>
+            The = sign is ignored.<br>
             Note: SwiftPlot takes math order into consideration, hence it's important to take these into account. 
         </p>
-        <h2>Operations</h2>
+        <h2>Operators</h2>
         <p>
             SwiftPlot currently supports a limited amount of operations: Power, Multiply, Divide, Add and Substract.<br>
             Below you'll find what symbol represents what operation.<br>
@@ -45,6 +48,7 @@
         <p>The syntax for if-else-then statements is as follows:<br>
             if comparison then expression else expression<br>
             Example: if v >= 0 then Fres = Fengine - Ffriction else Fres = Fengine<br>
+            Note: It is required to state all three: if then else.
         </p>
         <h2>Compare Operators</h2>
         <p>These compare operators are supported:<br>
@@ -53,7 +57,25 @@
             - smaller: &lt;<br>
             - larger and or equals: >=<br>
             - smaller and or equals: &lt;=<br>
-            Note: Due to mathematical limitations, equals currently behaves a little weird. For higher precision SwiftPlot calculates with Doubles, but that means that 5.00000, behind the scenes means 4.9999999999999.
+            Note: Due to mathematical limitations, equals currently behaves a little weird. For higher precision SwiftPlot calculates with Doubles, but that means that 5.00000 could mean 4.9999999999999 behind the scenes. This is currently under investigation.
+        </p>
+        <h2>Single Parameter Functions:</h2>
+        <p>Single parameter funcitons are called with the following syntax:<br>
+        Function ( Expression/Value )
+        </p>
+        <p>
+            - abs ( )<br>
+            - sign ( )<br>
+            - sin ( )<br>
+            - cos ( )<br>
+            - tan ( )<br>
+            - asin ( ) *reverse sinus<br>
+            - acos ( ) *reverse cosinus<br>
+            - atan ( ) *reverse tangens<br>
+            - sqrt ( )<br>
+            - exp ( )<br>
+            - log ( )<br>
+            - log10 ( )<br>
         </p>
     </body>
 </html>
