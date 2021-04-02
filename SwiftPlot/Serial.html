@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> SwiftPlot - Calculator </title>
+        <title> SwiftPlot - Serial Interface (Arduino) </title>
         <meta charset="utf-8">
         <meta name="description" content="SwiftPlot Documentation">
         <meta name="author" content="Matter4478">
@@ -25,6 +25,7 @@
             </div>
             <a href="Guide.html">Quickstart</a>
         </div>  
+        <h2>Serial Interface</h2>
         <table style="width: 100px;" class="table">
             <th>Documentation</th>
             <tr><td><a href="Operations.html">Syntax and Operations</a></td></tr>
@@ -32,27 +33,30 @@
             <tr><td><a href="Limitations.html">Limitations</a></td></tr>
             <tr><td><a href="Shortcuts.html">Shortcuts</a></td></tr>
             <tr><td><a href="Calculator.html">Calculator</a></td></tr>
+            <tr><td><a href="Serial.html">Serial Interface (Arduino)</a></td></tr>
             <th>Download for Mac</th>
             <tr><td><a href="SwiftPlot.zip">Update 0.4</a><br></td></tr>
         </table>
-        <h2>Calculator</h2>
-        <p>The calculator consists of two parts, the register and the calculator. 
-            The register is used to hold values and the calculator is where your instructions will take place.<br><br>
+        <p>The Serial Interface is an interface for communicating with an Serial interface. 
+            Intended for use with Arduino, but useful for anything that sends data over a Serial Bus.
+            The menubar is used for device selection, the detail view serves the interaction with a device.
         </p>
-        <h2>Calculator:</h2>
-        <p>
-            The calculator uses the same syntax as the model feature: <a href="Operations.html">Syntax and Operations.</a><br>
-            To hold a value in the register you simply type a letter or a name like so:<br>
-            a = 2 * 3<br>
-            This will store a = 6 in the register. To modify this value you can either write: a = a * 2 or write a * 2.
-            Take note: the 'a =' is not required, it simply functions to make it clear to the user. 
-            In SwiftPlot this rule applys: The first variable will be assigned the result of the expression.* 
+        <h2>Devices</h2>
+        <p></p>
+        <h2>Console</h2>
+        <h2>Protocol: JSON</h2>
+        <p>To import data into SwiftPlot the data send over the serial bus must be in accordance with the protocol.
+            The protocol exists over two parts:<br>
+            - Console data<br>
+            - Data Entries<br>
+            Console data is any ASCII encoded string.<br>
+            Data Entries are more complicated, they must be according to the correct format.
+            This must still be send as an ASCII encoded string, but to be accepted as a data entry it must be of the following format: JSON<br>
+            "[{\"key\":\"T\",\"value\":19.379999999999999},{"key":"t","value":1}]"<br>
+            {} encapsulate a "key" : "value" pair in JSON format.
+            Everything sent with a single "Entry: {"key"="string","value"="10"}" signal, will remain in that form, once recieved by SwiftPlot.
+            * This means that every time "" is sent, an dictionary will be added to the array of DataEntries.
         </p>
-        <h2>Register:</h2>
-        <p>The register bar can be hidden with the blue navigationbar button on the upperleft. 
-            The values being held by the register can be deleted by pressing the trashcan in the upperright corner.
-        </p>
-        <p>* Technically speaking this means that as an example the value 2 can be assigned a different value. 
-            In the calculator this will be corrected just before the next calculation is handled. </p>
+
     </body>
 </html>
