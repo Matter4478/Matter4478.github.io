@@ -20,6 +20,7 @@
                     <a href="Limitations.html">Limitations</a>
                     <a href="Shortcuts.html">Shortcuts</a>
                     <a href="Calculator.html">Calculator</a>
+                    <a href="Serial.html">Arduino (Serial Communication)</a>
                     <a href="Licenses.txt">Licenses</a>
                 </div>
             </div>
@@ -41,61 +42,82 @@
             Intended for use with Arduino, but useful for anything that sends data over a Serial Bus.
             The menubar is used for device selection, the detail view serves the interaction with a device.
         </p>
-        <h2>Devices</h2>
-        <p>The Devices navigationview lists all connected devices that list a serial interface. 
-            The refresh button refreshes the list(Command R).
-            To open a serial interface click on a listed device and the port will be opened. 
-            The output will appear in the Console window.</p>
-        <h2>Console</h2>
-        <p>The navigationbar contains at the leading edge four buttons: a trashcan to clear the console (Command Delete), a xmark to interrupt the connection, an arrow to restart the connection, and a share icon to store the data.
-            At the trailing edge there's the plot button. This button will lead to the plot view.
-        </p>
-        <h2>Plot</h2>
-        <p>To plot the data onto the graph, type the keynames and press plot. The data button is useful for updating the data from the console. Press the plot button to plot the data.</p>
-        <h2>Protocol: JSON</h2>
-        <p>To import data into SwiftPlot the data send over the serial bus must be in accordance with the protocol.
-            The protocol exists over two parts:<br>
-            - Output<br>
-            - JSON<br>
-            Output is a simple ASCII encoded string and useful for reading status from your device.<br>
-            Data Entries are more complicated, they must be according to the correct format.
-            This must still be send as an ASCII encoded string, but to be accepted as a data entry it must be in JSON format.<br>
-            Example: "[{\"key\":\"T\",\"value\":19.379999999999999},{"key":"t","value":1}]"<br>
-        </p>
-        <h2>arduinojson</h2>
-        <p>To easily serialize json on arduino we recommend arduinojson. The custom class below is an easy way to quickly create the correct format.<br>
-        </p>
-        <style>.hljs-section{color:#057CB0;}.hljs-literal{color:#aa0d91;}.hljs-quote{color:#707F8C;}.hljs-title{color:#057CB0;}.hljs-type{color:#4B21B0;}.hljs-link{color:#080;}.hljs-attr{color:#057CB0;}.hljs-meta{color:#aa0d91;}.hljs-number{color:#057CB0;}.hljs-deletion{background-color:#ffc8bd;}.hljs-tag{color:#057CB0;}.hljs-class{color:#057CB0;}.hljs-selector-class{color:#9b703f;}.hljs-comment{color:#707F8C;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-attribute{color:#000;}.hljs-name{color:#008;}.hljs-selector-id{color:#9b703f;}.hljs-doctag{font-weight:bold;}.hljs{display:block;color:black;padding:0.5em;overflow-x:auto;}.hljs-addition{background-color:#baeeba;}.hljs-selector-tag{color:#aa0d91;}.hljs-template-variable{color:#660;}.hljs-subst{color:#000;}.hljs-regexp{color:#080;}.hljs-symbol{color:#057CB0;}.hljs-string{color:#c41a16;}.hljs-built_in{color:#5c2699;}.hljs-keyword{color:#aa0d91;}.hljs-params{color:#5c2699;}.hljs-variable{color:#660;}.hljs-strong{font-weight:bold;}.hljs-bullet{color:#057CB0;}.hljs-emphasis{font-style:italic;}.hljs-builtin-name{color:#5c2699;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px">
-            #include &lt;<span class="hljs-type">ArduinoJson</span>.<span class="hljs-attribute">h</span>&gt;
-            <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JSON</span></span>{
-              <span class="hljs-keyword">public</span>:
-              <span class="hljs-type">StaticJsonDocument</span>&lt;<span class="hljs-number">128</span>&gt; doc;
-              
-              void<span class="hljs-attribute"> appendJSON</span>(<span class="hljs-type">String</span> key, float value){
-                <span class="hljs-type">JsonObject</span> obj = doc.<span class="hljs-attribute">createNestedObject</span>();
-                obj[<span class="hljs-string">"key"</span>] = key;
-                obj[<span class="hljs-string">"value"</span>] = value;
-              }
-              
-              void<span class="hljs-attribute"> sendJSON</span>(){
-                char output[<span class="hljs-number">256</span>];
-               <span class="hljs-attribute"> serializeJson</span>(doc, output);
-                <span class="hljs-type">Serial</span>.<span class="hljs-attribute">println</span>(output);
-              }
-            };</code></pre>
-        <p>
-            In the example below you see how to use it in your void loop function. When the sizes of your JSON is the same you can place the const capacity outside of the main function.
-            To calculate the capacity you use JSON_OBJECT_SIZE(number). The first number is for the amount of entries you want the array to have. Then you'll add the amount of entries * JSON_OBJECT_SIZE(2). Size is 2 because it should code a key value pair, two objects.
-        </p>
-        <style>.hljs-selector-tag{color:#aa0d91;}.hljs-regexp{color:#080;}.hljs-built_in{color:#5c2699;}.hljs-addition{background-color:#baeeba;}.hljs-symbol{color:#057CB0;}.hljs-section{color:#057CB0;}.hljs-doctag{font-weight:bold;}.hljs-emphasis{font-style:italic;}.hljs-builtin-name{color:#5c2699;}.hljs-comment{color:#707F8C;}.hljs-tag{color:#057CB0;}.hljs-attribute{color:#804FB8;}.hljs-selector-id{color:#9b703f;}.hljs-title{color:#057CB0;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-subst{color:#000;}.hljs-bullet{color:#057CB0;}.hljs-variable{color:#660;}.hljs{overflow-x:auto;padding:0.5em;display:block;color:black;}.hljs-name{color:#008;}.hljs-strong{font-weight:bold;}.hljs-deletion{background-color:#ffc8bd;}.hljs-number{color:#057CB0;}.hljs-type{color:#4B21B0;}.hljs-attr{color:#057CB0;}.hljs-selector-class{color:#9b703f;}.hljs-params{color:#5c2699;}.hljs-class{color:#057CB0;}.hljs-meta{color:#aa0d91;}.hljs-keyword{color:#aa0d91;}.hljs-quote{color:#707F8C;}.hljs-literal{color:#aa0d91;}.hljs-string{color:#c41a16;}.hljs-template-variable{color:#660;}.hljs-link{color:#080;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> capacity = JSON_OBJECT_SIZE(<span class="hljs-number">2</span>) + <span class="hljs-number">2</span> * JSON_OBJECT_SIZE(<span class="hljs-number">2</span>);
-
-            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
-            StaticJsonDocument&lt;capacity&gt; doc;
-                JSON json;
-                json.doc = doc;
-                json.appendJSON(“key”, value);
-                json.appendJSON(“key”, value);
-                json.sendJSON();
-            }</code></pre>
+        <div class="grid">
+            <div>
+                <h2>Devices</h2>
+                <p>The Devices navigationview lists all connected devices that list a serial interface. 
+                    The refresh button refreshes the list(Command R).
+                    To open a serial interface click on a listed device and the port will be opened. 
+                    The output will appear in the Console window.</p>
+            </div>
+            <div>
+                <h2>Console</h2>
+                <p>The navigationbar contains at the leading edge four buttons: a trashcan to clear the console (Command Delete), a xmark to interrupt the connection, an arrow to restart the connection, and a share icon to store the data.
+                    At the trailing edge there's the plot button. This button will lead to the plot view.
+                </p> 
+                <h2>Plot</h2>
+                <p>To plot the data onto the graph, type the keynames and press plot. The data button is useful for updating the data from the console. Press the plot button to plot the data.</p>
+            </div>
+            <div>
+                <h2>Protocol: JSON</h2>
+                <p>To import data into SwiftPlot the data send over the serial bus must be in accordance with the protocol.
+                    The protocol exists over two parts:<br>
+                    - Output<br>
+                    - JSON<br>
+                    Output is a simple ASCII encoded string and useful for reading status from your device.<br>
+                    Data Entries are more complicated, they must be according to the correct format.
+                    This must still be send as an ASCII encoded string, but to be accepted as a data entry it must be in JSON format.
+                    <style>.hljs-selector-tag{color:#aa0d91;}.hljs-template-variable{color:#660;}.hljs-bullet{color:#057CB0;}.hljs-comment{color:#707F8C;}.hljs-addition{background-color:#baeeba;}.hljs-selector-class{color:#9b703f;}.hljs-builtin-name{color:#5c2699;}.hljs-subst{color:#000;}.hljs-literal{color:#aa0d91;}.hljs-keyword{color:#aa0d91;}.hljs-class{color:#057CB0;}.hljs-emphasis{font-style:italic;}.hljs-params{color:#5c2699;}.hljs-variable{color:#660;}.hljs-string{color:#c41a16;}.hljs{overflow-x:auto;color:black;padding:0.5em;display:block;}.hljs-attribute{color:#804FB8;}.hljs-built_in{color:#5c2699;}.hljs-name{color:#008;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-tag{color:#057CB0;}.hljs-deletion{background-color:#ffc8bd;}.hljs-symbol{color:#057CB0;}.hljs-attr{color:#057CB0;}.hljs-doctag{font-weight:bold;}.hljs-selector-id{color:#9b703f;}.hljs-number{color:#057CB0;}.hljs-regexp{color:#080;}.hljs-meta{color:#aa0d91;}.hljs-link{color:#080;}.hljs-type{color:#4B21B0;}.hljs-strong{font-weight:bold;}.hljs-quote{color:#707F8C;}.hljs-section{color:#057CB0;}.hljs-title{color:#057CB0;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px">
+[
+    {
+        <span class="hljs-attr">"key"</span>:<span class="hljs-string">"T"</span>,
+        <span class="hljs-attr">"value"</span>:<span class="hljs-number">19.4</span>
+    },
+    {
+        <span class="hljs-attr">"key"</span>:<span class="hljs-string">"t"</span>,
+        <span class="hljs-attr">"value"</span>:<span class="hljs-number">1</span>
+    }
+]
+                    </code></pre><br>
+                </p>
+            </div>
+            <div>
+                <h2>arduinojson</h2>
+                <p>To easily serialize json on arduino we recommend arduinojson. The custom class below is an easy way to quickly create the correct format.<br>
+                </p>
+<style>.hljs-section{color:#057CB0;}.hljs-literal{color:#aa0d91;}.hljs-quote{color:#707F8C;}.hljs-title{color:#057CB0;}.hljs-type{color:#4B21B0;}.hljs-link{color:#080;}.hljs-attr{color:#057CB0;}.hljs-meta{color:#aa0d91;}.hljs-number{color:#057CB0;}.hljs-deletion{background-color:#ffc8bd;}.hljs-tag{color:#057CB0;}.hljs-class{color:#057CB0;}.hljs-selector-class{color:#9b703f;}.hljs-comment{color:#707F8C;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-attribute{color:#000;}.hljs-name{color:#008;}.hljs-selector-id{color:#9b703f;}.hljs-doctag{font-weight:bold;}.hljs{display:block;color:black;padding:0.5em;overflow-x:auto;}.hljs-addition{background-color:#baeeba;}.hljs-selector-tag{color:#aa0d91;}.hljs-template-variable{color:#660;}.hljs-subst{color:#000;}.hljs-regexp{color:#080;}.hljs-symbol{color:#057CB0;}.hljs-string{color:#c41a16;}.hljs-built_in{color:#5c2699;}.hljs-keyword{color:#aa0d91;}.hljs-params{color:#5c2699;}.hljs-variable{color:#660;}.hljs-strong{font-weight:bold;}.hljs-bullet{color:#057CB0;}.hljs-emphasis{font-style:italic;}.hljs-builtin-name{color:#5c2699;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px">
+#include &lt;<span class="hljs-type">ArduinoJson</span>.<span class="hljs-attribute">h</span>&gt;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JSON</span></span>{
+    <span class="hljs-keyword">public</span>:
+    <span class="hljs-type">StaticJsonDocument</span>&lt;<span class="hljs-number">128</span>&gt; doc;
+                      
+    void<span class="hljs-attribute"> appendJSON</span>(<span class="hljs-type">String</span> key, float value){
+        <span class="hljs-type">JsonObject</span> obj = doc.<span class="hljs-attribute">createNestedObject</span>();
+        obj[<span class="hljs-string">"key"</span>] = key;
+        obj[<span class="hljs-string">"value"</span>] = value;
+    }
+                      
+    void<span class="hljs-attribute"> sendJSON</span>(){
+        char output[<span class="hljs-number">256</span>];
+        <span class="hljs-attribute"> serializeJson</span>(doc, output);
+        <span class="hljs-type">Serial</span>.<span class="hljs-attribute">println</span>(output);
+    }
+};</code></pre>
+                <p>
+                    In the example below you see how to use it in your void loop function. When the sizes of your JSON is the same you can place the const capacity outside of the main function.
+                    To calculate the capacity you use JSON_OBJECT_SIZE(number). The first number is for the amount of entries you want the array to have. Then you'll add the amount of entries * JSON_OBJECT_SIZE(2). Size is 2 because it should code a key value pair, two objects.
+                </p>
+                <style>.hljs-selector-tag{color:#aa0d91;}.hljs-regexp{color:#080;}.hljs-built_in{color:#5c2699;}.hljs-addition{background-color:#baeeba;}.hljs-symbol{color:#057CB0;}.hljs-section{color:#057CB0;}.hljs-doctag{font-weight:bold;}.hljs-emphasis{font-style:italic;}.hljs-builtin-name{color:#5c2699;}.hljs-comment{color:#707F8C;}.hljs-tag{color:#057CB0;}.hljs-attribute{color:#804FB8;}.hljs-selector-id{color:#9b703f;}.hljs-title{color:#057CB0;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-subst{color:#000;}.hljs-bullet{color:#057CB0;}.hljs-variable{color:#660;}.hljs{overflow-x:auto;padding:0.5em;display:block;color:black;}.hljs-name{color:#008;}.hljs-strong{font-weight:bold;}.hljs-deletion{background-color:#ffc8bd;}.hljs-number{color:#057CB0;}.hljs-type{color:#4B21B0;}.hljs-attr{color:#057CB0;}.hljs-selector-class{color:#9b703f;}.hljs-params{color:#5c2699;}.hljs-class{color:#057CB0;}.hljs-meta{color:#aa0d91;}.hljs-keyword{color:#aa0d91;}.hljs-quote{color:#707F8C;}.hljs-literal{color:#aa0d91;}.hljs-string{color:#c41a16;}.hljs-template-variable{color:#660;}.hljs-link{color:#080;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> capacity = JSON_OBJECT_SIZE(<span class="hljs-number">2</span>) + <span class="hljs-number">2</span> * JSON_OBJECT_SIZE(<span class="hljs-number">2</span>);
+        
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+    StaticJsonDocument&lt;capacity&gt; doc;
+    JSON json;
+    json.doc = doc;
+    json.appendJSON(“key”, value);
+    json.appendJSON(“key”, value);
+    json.sendJSON();
+}</code></pre>
+            </div>
+        </div>
     </body>
 </html>

@@ -20,9 +20,12 @@
                     <a href="Limitations.html">Limitations</a>
                     <a href="Shortcuts.html">Shortcuts</a>
                     <a href="Calculator.html">Calculator</a>
+                    <a href="Serial.html">Arduino (Serial Communication)</a>
                     <a href="Licenses.txt">Licenses</a>
                 </div>
             </div>
+            <a href="Guide.html">Quickstart</a>
+        </div> 
             <a href="Guide.html">Quickstart</a>
         </div>   
         <table style="width: 100px;" class="table">
@@ -35,85 +38,102 @@
             <th>Download for Mac</th>
             <tr><td><a href="SwiftPlot.zip">Update 0.4</a><br></td></tr>
         </table>
-        <h2>Quickstart Guide</h2>
-        <p>
-            To make a model in SwiftPlot there are a few steps involved, from modelling lines to analyzing it will be explained.
-            To get started open SwiftPlot. You should now be greeted with a screen saying Welcome to SwiftPlot.
-            To follow along press New. Then go one by one through the pages below. Good luck!
-        </p>
-        <h2>Compatability:</h2>
-        <p>version 0.1 - 0.6.1</p>
-        <h2>Modelling</h2>
-        <p>
-            A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
-            In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
-        </p>
-        <p>The formulas in play:</p>
-        <p>
-            > F = C * u
-        </p>
-        <p>
-            > a = F / m
-        </p>
-        <p>
-            > vnew = vold + a * dt
-        </p>
-        <p>
-            > unew = uold + v * dt
-        </p>
-        <p>
-            > tnew = told + dt
-        </p>
-        <img src="Images/modelLinesHP.png" alt="Model Lines">
-        <p>
-            In SwiftPlot the = token means "will be" instead of "equals".
-            Therefore vnew and vold should be replaced with v. 
-            The same is true for all other formulas with old and new in them.
-            To add Model Lines in SwiftPlot, press the arrow right of Model Lines to drop down the Model Lines.
-            In the textfield type the formula and press "Add Line".
-            When done continue to Variables.
-        </p>
-        <h2>Variables</h2>
-        <p>
-            A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
-            In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
-            These formula's need values to start with. In SwiftPlot this is done in the Variables menu.
-        </p>
-        <p>
-            For this step the Model Lines must already be in place. First: press "Check Variables". Now all variables should be visible.
-            Variables named to real numbers should automatically be assigned the correct value. 
-            Now it's time to assign values to the remaining variables.
-            Type a value in the textfield and click on the variables to which that value should be assigned.
-            When all variables are assigned the correct value you can continue to Plotting. 
-        </p>
-        <img src="Images/variablesHP.png" alt="Variables">
-        <b><br>*numbers must be written with points in between. Like so: 1.2354*</b>
-        <h2>Plotting</h2>
-        <p>
-            A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
-            In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
-            To analyze the results of your model you can do two things: 1. plot the results into a graph and 2. see all individual values.
-        </p>
-        <p>
-            For this step the Model Lines and Variables must already be in place. To start press "Run Model".
-            First we'll see the individual results and second we will plot them into a graph. 
-        </p>
-        <p>
-            Click on "Data Keys" and you'll be presented with the results of your model. 
-            Take note that only the variables that did change will be listed more than once.
-        </p>
-        <p>
-            Next up is making one of those shiny graphs.
-            By default the y-axis is set to dt. In the textfield type the variable that should be plotted in the y-axis.
-            The x-axis is set to t. In the textfield type the variable that should be plotted on the x-axis.
-            For the example set the y-axis to u and the x-axis to t.
-            Now click "Plot" and then click on "Graph". You should now be presented with a shiny graph.
-        </p>
-        <img src="Images/plotHP.png" alt="Graph">
-        <b><br>
-            *Sometimes the graph doesn't appear as expected. In such a case it could be that the amount of data caused an automatic lag prevention.
-            To resolve this open "Show Advanced Options" and select a lower "Reduce Point Factor" or select less data points by using the sliders.*
-        </b>
+
+        <div class="grid">
+            <div>
+                <h2>Quickstart Guide</h2>
+                <p>
+                    To make a model in SwiftPlot there are a few steps involved, from modelling lines to analyzing it will be explained.
+                    To get started open SwiftPlot. You should now be greeted with a screen saying Welcome to SwiftPlot.
+                    To follow along press New. Then go one by one through the pages below. Good luck!
+                </p>
+                <h2>Compatability:</h2>
+                <p>version 0.1 - 0.6.1</p>
+            </div>
+            <div>
+                <h2>Modelling</h2>
+                <p>
+                    A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
+                    In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
+                </p>
+                <p>The formulas in play:</p>
+                <style>.hljs-keyword{color:#aa0d91;}.hljs-link{color:#080;}.hljs-addition{background-color:#baeeba;}.hljs-class{color:#057CB0;}.hljs-variable{color:#660;}.hljs-literal{color:#aa0d91;}.hljs-attribute{color:#000;}.hljs-subst{color:#000;}.hljs-formula{background-color:#eee;font-style:italic;}.hljs-built_in{color:#5c2699;}.hljs-bullet{color:#057CB0;}.hljs-builtin-name{color:#5c2699;}.hljs{padding:0.5em;color:black;display:block;overflow-x:auto;}.hljs-meta{color:#aa0d91;}.hljs-strong{font-weight:bold;}.hljs-selector-class{color:#9b703f;}.hljs-type{color:#4B21B0;}.hljs-selector-tag{color:#aa0d91;}.hljs-doctag{font-weight:bold;}.hljs-comment{color:#707F8C;}.hljs-attr{color:#057CB0;}.hljs-name{color:#008;}.hljs-params{color:#5c2699;}.hljs-title{color:#057CB0;}.hljs-emphasis{font-style:italic;}.hljs-number{color:#057CB0;}.hljs-template-variable{color:#660;}.hljs-regexp{color:#080;}.hljs-section{color:#057CB0;}.hljs-symbol{color:#057CB0;}.hljs-quote{color:#707F8C;}.hljs-string{color:#c41a16;}.hljs-tag{color:#057CB0;}.hljs-deletion{background-color:#ffc8bd;}.hljs-selector-id{color:#9b703f;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px">
+                    F = C * u
+        
+                    a = F / m
+                                
+                    vnew = vold + a * dt
+                                
+                    unew = uold + v * dt
+                                
+                    tnew = told + dt</code></pre>
+                    <p>
+                        In SwiftPlot the = token means "will be" instead of "equals".
+                        Therefore vnew and vold should be replaced with v. 
+                        The same is true for all other formulas with old and new in them.
+                        To add Model Lines in SwiftPlot, press the arrow right of Model Lines to drop down the Model Lines.
+                        In the textfield type the formula and press "Add Line".
+                        When done continue to Variables.
+                    </p>
+                    <style>.hljs-strong{font-weight:bold;}.hljs-template-variable{color:#660;}.hljs-deletion{background-color:#ffc8bd;}.hljs-params{color:#5c2699;}.hljs{padding:0.5em;display:block;overflow-x:auto;color:black;}.hljs-selector-class{color:#9b703f;}.hljs-symbol{color:#057CB0;}.hljs-formula{font-style:italic;background-color:#eee;}.hljs-keyword{color:#aa0d91;}.hljs-subst{color:#000;}.hljs-emphasis{font-style:italic;}.hljs-section{color:#057CB0;}.hljs-selector-tag{color:#aa0d91;}.hljs-selector-id{color:#9b703f;}.hljs-attr{color:#057CB0;}.hljs-meta{color:#aa0d91;}.hljs-tag{color:#057CB0;}.hljs-regexp{color:#080;}.hljs-variable{color:#660;}.hljs-link{color:#080;}.hljs-comment{color:#707F8C;}.hljs-builtin-name{color:#5c2699;}.hljs-title{color:#057CB0;}.hljs-type{color:#4B21B0;}.hljs-string{color:#c41a16;}.hljs-doctag{font-weight:bold;}.hljs-quote{color:#707F8C;}.hljs-class{color:#057CB0;}.hljs-literal{color:#aa0d91;}.hljs-attribute{color:#000;}.hljs-number{color:#057CB0;}.hljs-addition{background-color:#baeeba;}.hljs-built_in{color:#5c2699;}.hljs-name{color:#008;}.hljs-bullet{color:#057CB0;}</style><pre><code class="hljs" style="background:#FFFFFF;border-radius:8px">
+                        F = C * u
+    
+                        a = F / m
+                                    
+                        v = v + a * dt
+                                    
+                        u = u + v * dt
+                                    
+                        t = t + dt</code></pre>
+                <!-- <img src="Images/modelLinesHP.png" alt="Model Lines"> -->
+            </div>
+            <div>
+                <h2>Variables</h2>
+                <p>
+                    A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
+                    In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
+                    These formula's need values to start with. In SwiftPlot this is done in the Variables menu.
+                </p>
+                <p>
+                    For this step the Model Lines must already be in place. First: press "Check Variables". Now all variables should be visible.
+                    Variables named to real numbers should automatically be assigned the correct value. 
+                    Now it's time to assign values to the remaining variables.
+                    Type a value in the textfield and click on the variables to which that value should be assigned.
+                    When all variables are assigned the correct value you can continue to Plotting. 
+                    <img src="Images/variablesHP.png" alt="Variables">
+                </p>
+
+            </div>
+            <div>
+                <b><br>*numbers must be written with points in between. Like so: 1.2354*</b>
+                <h2>Plotting</h2>
+                <p>
+                    A model in SwiftPlot is based around formula's. To make a model you'll need to have those at hand.
+                    In this tutorial we will be making a model of a harmonic period, the time required for a string to go up and down.
+                    To analyze the results of your model you can do two things: 1. plot the results into a graph and 2. see all individual values.
+                </p>
+                <p>
+                    For this step the Model Lines and Variables must already be in place. To start press "Run Model".
+                    First we'll see the individual results and second we will plot them into a graph. 
+                </p>
+                <p>
+                    Click on "Data Keys" and you'll be presented with the results of your model. 
+                    Take note that only the variables that did change will be listed more than once.
+                </p>
+                <p>
+                    Next up is making one of those shiny graphs.
+                    By default the y-axis is set to dt. In the textfield type the variable that should be plotted in the y-axis.
+                    The x-axis is set to t. In the textfield type the variable that should be plotted on the x-axis.
+                    For the example set the y-axis to u and the x-axis to t.
+                    Now click "Plot" and then click on "Graph". You should now be presented with a shiny graph.
+                </p>
+                <img src="Images/plotHP.png" alt="Graph">
+                <b><br>
+                    *Sometimes the graph doesn't appear as expected. In such a case it could be that the amount of data caused an automatic lag prevention.
+                    To resolve this open "Show Advanced Options" and select a lower "Reduce Point Factor" or select less data points by using the sliders.*
+                </b>
+            </div>
+        </div>
         <!-- <a href="SwiftPlot.zip">Example.plt</a> -->
     </body>
 </html>

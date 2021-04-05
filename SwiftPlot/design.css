@@ -13,7 +13,16 @@ html {
 .container{
 	background-color: #2f3330;
 }
-
+.grid{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(15cm, max-content));
+	grid-gap: 10px;
+}
+.grid > div {
+	background-color: #0e50b35b;
+	padding: 8px;
+	border-radius: 5px;
+}
 .borderedtable{
 	padding: 1%;
 	border-style: solid;
@@ -47,7 +56,7 @@ html {
 	position: sticky;
 	top: 0;
 }
-@media screen and (min-width: 600px){
+@media screen and (max-width: 900px){
 	h1{
 		font-size: 450px;		
 	}
@@ -56,7 +65,7 @@ html {
 	}
 	}
 	.table{
-		visibility: visible;
+		display: inline;
 	}
 @media screen and (max-width: 599px){
 	h1{
@@ -67,7 +76,7 @@ html {
 	}
 	}
 	.table{
-		visibility: hidden;
+		display: none;
 	}
 
 
@@ -84,7 +93,7 @@ a:hover {
 }
 img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	position: center;
 }
 
