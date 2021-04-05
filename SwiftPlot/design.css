@@ -23,6 +23,10 @@ html {
 	padding: 8px;
 	border-radius: 5px;
 }
+.grid > a{
+	text-decoration: none;
+	
+}
 .borderedtable{
 	padding: 1%;
 	border-style: solid;
@@ -56,17 +60,20 @@ html {
 	position: sticky;
 	top: 0;
 }
-@media screen and (max-width: 900px){
+@media screen and (min-width: 600px){
 	h1{
 		font-size: 450px;		
 	}
-	p, td, a{
+	p, td{
 		font-size: 20px;
 	}
-	}
 	.table{
-		display: inline;
+		display: none;
 	}
+	.grid{
+		grid-template-columns: auto-fill, minmax(15cm, max-content);
+	}
+}
 @media screen and (max-width: 599px){
 	h1{
 		font-size: 40px;		
@@ -74,10 +81,13 @@ html {
 	p, td, a{
 		font-size: 15px;
 	}
-	}
 	.table{
 		display: none;
 	}
+	.grid{
+		grid-template-columns: auto-fill, minmax(100%, max-content);
+	}
+}
 
 
 a{
@@ -91,27 +101,31 @@ a:hover {
 	color: black;
 	text-decoration: none;
 }
-img {
-	width: 100%;
-	height: 100%;
-	position: center;
+
+.black{
+	color: black;
 }
 
+th{
+	background-color: #0e50b3;
+	border-radius: 5px;
+	padding: 3px;
+	color: white;
+	font-family: Helvetica;
+}
+
+.largeimg{
+	width: 100%;
+	height: auto;
+	position: center;
+	border-radius: 5px;
+}
 * {
 	box-sizing: border-box;
 }
-h1{
+h1, h2, p{
 	font-family: Helvetica;
 
-}
-h2{
-	font-family: Helvetica;
-}
-
-
-
-p{
-	font-family: Helvetica;
 }
 
 img{
