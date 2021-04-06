@@ -172,3 +172,8 @@ img{
 	background-size: 75%;
 	border-radius: 5px;
 }
+
+.markeda{
+	text-decoration: solid;
+	color: #0e50b3;
+}
