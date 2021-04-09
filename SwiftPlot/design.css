@@ -18,11 +18,7 @@ html {
 	grid-template-columns: repeat(auto-fill, minmax(15cm, max-content));
 	grid-gap: 10px;
 }
-.grid > div {
-	background-color: #0e50b35b;
-	padding: 8px;
-	border-radius: 5px;
-}
+
 .grid > a{
 	text-decoration: none;
 	
@@ -71,7 +67,12 @@ html {
 		display: none;
 	}
 	.grid{
-		grid-template-columns: auto-fill, minmax(15cm, max-content);
+		grid-template-columns: auto-fill, minmax(0.3fr, max-content);
+	}
+	.grid > div {
+		background-color: #0e50b35b;
+		padding: 8px;
+		border-radius: 5px;
 	}
 }
 @media screen and (max-width: 599px){
@@ -85,7 +86,12 @@ html {
 		display: none;
 	}
 	.grid{
-		grid-template-columns: auto-fill, minmax(100%, max-content);
+		grid-template-columns: auto-fill, minmax(1fr, max-content);
+		padding: 2px;
+		border-radius: none;
+	}
+	.hide{
+		display: none;
 	}
 }
 
