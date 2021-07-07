@@ -57,7 +57,7 @@
 
                 document.getElementById("description").innerText = object.stringDescription;
 
-                let completeString = `${date}\nDuration: ${Math.round(duration)} min\n${distance.toFixed(2)} km`;
+                let completeString = `${date}\nDuration: ${Math.round(duration)} min\nDistance: ${distance.toFixed(2)} km`;
                 document.getElementById("textrepresentation").innerText = completeString;
 
                 if (object.trackLocation.length >= 1){
