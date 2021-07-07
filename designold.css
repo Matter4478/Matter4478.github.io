@@ -13,6 +13,7 @@ html {
 
 .topbar, .content{
 	background-color: #2f3330;
+	border-radius: 9px;
 }
 
 .topbar{
@@ -20,7 +21,7 @@ html {
 	position: sticky;
 	top: 0;
 }
-/* @media screen and (min-width: 600px){
+@media screen and (min-width: 600px){
 	h1{
 		font-size: 80px;		
 	}
@@ -51,7 +52,7 @@ html {
 	.grid > div{
 		padding: 8px;
 	}
-} */
+}
 .grid{
 	display: grid;
 	grid-template-columns: repeat();

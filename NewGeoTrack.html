@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Matter4478 - SwiftPlot</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet"  type="text/css"  href="design.css"> 
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-brand" href="index.html">Matter4478</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="SwiftPlot/index.html">SwiftPlot</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                GeoTrack
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="AboutGeoTrack.html">GeoTrack</a> </li>
+                                <li><a class="dropdown-item" href="NewGeoTrack.html">GeoViewer</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">  
+                <h1>GeoViewer</h1>
+                <div id="mb3">
+                    <label for="File" class="formlabel">Select your track</label>
+                    <input class="form-control" id="File" type="file" onchange="loadTrack(this)">
+                </div>    
+                <h1></h1>
+            <div id="track">
+                <h1 id="fileName"></h1>
+                <h2 id="description"></h2>
+                <p id="textrepresentation"></p>
+            </div>
+            <div id="mapid"></div>
+        </div>
+
+        <script>
+            document.getElementById("track").hidden = true;
+            var mymap = L.map("mapid").setView([0, 0], 1);
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: 'pk.eyJ1IjoiemVybWF0dCIsImEiOiJja292dHR1ODUwYnJsMndrNWlsZmVoOXp4In0.ta2CsbC3U8V4I8m2KMIpKw'
+                }).addTo(mymap);
+            function loaded(file){
+                let object = JSON.parse(file);
+
+                document.getElementById("fileName").innerText = object.stringName;
+
+                let date = new Date(object.startDate * 1000 + 31*365*24*60*60*1000 + 8*24*60*60*1000);
+
+                let duration = object.totalDuration / 60;
+
+                let distance = object.totalDistance / 1000;
+
+                document.getElementById("description").innerText = object.stringDescription;
+
+                let completeString = `${date}\nDuration: ${Math.round(duration)} min\nDistance: ${distance.toFixed(2)} km`;
+                document.getElementById("textrepresentation").innerText = completeString;
+
+                if (object.trackLocation.length >= 1){
+                    let coordinate = object.trackLocation[0];
+                console.log(coordinate);
+                mymap.setView([coordinate.latitude, coordinate.longitude], 15);
+                var line = [[coordinate.latitude, coordinate.longitude]];
+                for (i = 1; i < object.trackLocation.length; i++){
+                    line.push([object.trackLocation[i].latitude, object.trackLocation[i].longitude]);
+                }
+                console.log(line);
+                let polyline = L.polyline(line).addTo(mymap);
+                var popup = L.popup().setLatLng([coordinate.latitude, coordinate.longitude]).setContent("You started here!").openOn(mymap);
+                }
+                document.getElementById("track").hidden = false;
+            }
+            function loadTrack(files){
+                let file = files.files[0];
+                document.getElementById("fileName").innerText = file.name;
+                console.log(file);
+                const fl = new FileReader();
+                fl.readAsText(file);
+                fl.onloadend = function() {
+                    loaded(fl.result);
+                };
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <noscript>Sorry! No scripting supported...</noscript>
+    </body>
+</html>
