@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
+        <title>Matter4478 - SwiftPlot</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <title> Matter4478 - Home </title>
-        <meta charset="utf-8">
-        <meta name="description" content="Matter4478's projects and creations">
-        <meta name="author" content="Matter4478">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="design.css">
+        <link rel="stylesheet"  type="text/css"  href="design.css"> 
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,10 +39,36 @@
                         </li>
                     </ul>
                 </div>
+                <div class="d-flex">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active bold" href="#">Get</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
-        <h1 class="geotrack">Matter4478</h1>
-        <p class="geotrack">This site should provide help, explanation and acces to my projects.</p>
+        <h1 class="geotrack">Updates</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="home.png" class="img-fluid" alt="Oops, the wannabe fancy site didn't work. Sorry!">
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <h3>See what's new</h3>
+                        <caption>V 1.0.0</caption>
+                        <ul>
+                            <li>
+                                <p>Initial release</p>
+                            </li>
+                        </ul>       
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <noscript>Sorry! No scripting supported...</noscript>
     </body>
 </html>

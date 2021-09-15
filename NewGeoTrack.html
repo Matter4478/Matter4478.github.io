@@ -34,32 +34,59 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="AboutGeoTrack.html">GeoTrack</a> </li>
                                 <li><a class="dropdown-item" href="NewGeoTrack.html">GeoViewer</a> </li>
+                                <li><a class="dropdown-item" href="UpdateGeoTrack.html">Updates</a></li>
                             </ul>
                         </li>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active bold" href="#">Get</a>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
+                <div class="d-flex">
+
+                </div>
+            </div>
+            <div class="container-fluid">
+
             </div>
         </nav>
         <h1 class="geotrack">GeoViewer</h1>
         <div class="container pad-top">  
             <div class="row">
-                <div class="col">
+                <div class="select">
                     <div id="mb3">
                         <label for="File" class="formlabel">Select your track</label>
                         <input class="form-control" id="File" type="file" onchange="loadTrack(this)">
                     </div>    
                 </div>
             </div>
-            <div class="row">
                 <div id="track">
-                    <h1 id="fileName"></h1>
+                    <div class="card">
+                        <div class="container-fluid">
+                            
+                        </div>
+                        <div class="card-header" id="filename">
+                            </div>
+                        <div class="card-body">
+                            <h5 class="card-title" id="filename"></h5>
+                            <p class="card-text" id="description"></p>
+                            <p id="textrepresentation"></p>
+                        </div>
+                    </div>
+                  </div>
+                </div> 
+                <!-- <div id="track">
+                    
                     <h2 id="description"></h2>
                     <p id="textrepresentation"></p>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div id="mapid"></div>
-
+        <div class="row">
+            <div id="mapid"></div>
+        </div>
         <script>
             document.getElementById("track").hidden = true;
             var mymap = L.map("mapid").setView([0, 0], 2);
@@ -72,9 +99,11 @@
                     accessToken: 'pk.eyJ1IjoiemVybWF0dCIsImEiOiJja292dHR1ODUwYnJsMndrNWlsZmVoOXp4In0.ta2CsbC3U8V4I8m2KMIpKw'
                 }).addTo(mymap);
             function loaded(file){
+                console.log("loaded file")
                 let object = JSON.parse(file);
+                console.log(object)
 
-                document.getElementById("fileName").innerText = object.stringName;
+                document.getElementById("filename").innerText = object.stringName;
 
                 let date = new Date(object.startDate * 1000 + 31*365*24*60*60*1000 + 8*24*60*60*1000);
 
@@ -87,7 +116,7 @@
                 let completeString = `${date}\nDuration: ${Math.round(duration)} min\nDistance: ${distance.toFixed(2)} km`;
                 document.getElementById("textrepresentation").innerText = completeString;
 
-                if (object.trackLocation.length >= 1){
+                if (object.trackLocation.length != 0){
                     let coordinate = object.trackLocation[0];
                 console.log(coordinate);
                 mymap.setView([coordinate.latitude, coordinate.longitude], 15);
@@ -95,15 +124,19 @@
                 for (i = 1; i < object.trackLocation.length; i++){
                     line.push([object.trackLocation[i].latitude, object.trackLocation[i].longitude]);
                 }
+                console.log("pushing line...")
                 console.log(line);
                 let polyline = L.polyline(line).addTo(mymap);
                 var popup = L.popup().setLatLng([coordinate.latitude, coordinate.longitude]).setContent("You started here!").openOn(mymap);
                 }
                 document.getElementById("track").hidden = false;
+                document.getElementById("mb3").hidden = true;
+                // document.getElementById("geotrack").innerText = object.stringName;
+                document.getElementById("filename").hidden = false;
             }
             function loadTrack(files){
                 let file = files.files[0];
-                document.getElementById("fileName").innerText = file.name;
+                document.getElementById("filename").innerText = file.name;
                 console.log(file);
                 const fl = new FileReader();
                 fl.readAsText(file);
