@@ -11,6 +11,7 @@ html {
 	} */
 body{
 	background-color: rgba(214, 199, 199, 0.644);
+	overflow: hidden;
 }
 .geotrack{
 	padding: 1%;
@@ -109,4 +110,9 @@ h1{
 
 .pad-bottom{
 	padding-bottom: 7%;
+}
+
+.logo{
+	max-width: 3%;
+	max-height: 5%;
 }
