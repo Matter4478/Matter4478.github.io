@@ -281,6 +281,11 @@ iframe{
     }
 }
 
+.PadLeftRight20{
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
 .accordion-button:not(.collapsed) {
     color: black  !important;
     background-color: #f1e9e9 !important;
